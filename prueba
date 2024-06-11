@@ -1,0 +1,71 @@
+package simulador;
+
+import javax.swing.JOptionPane;
+
+public class Simulador {
+
+    //Instancias
+    static cNodoPila NodoPagina = new cNodoPila();
+    static cPila PilaPaginas = new cPila();
+    
+    public static void main(String[] args) {
+
+    //Declaracion de Variables
+    int intOpcion = 1;
+    String NombrePagina;
+    cNodoPila Nodo = new cNodoPila();
+
+    while (intOpcion != 0){
+        
+        intOpcion= Integer.parseInt(JOptionPane.showInputDialog(null,"                Control de navegación web \n "
+                + "____________________________________\n"
+                + " 1 - Registrar Dirección Web \n"
+                + " 2 - Procesar Dirección Web \n"
+                + " 0 - Salir\n"
+                + "____________________________________"));
+        
+        switch(intOpcion){
+            case 1:{
+                RegistrarDireccion();
+                break;
+            }
+            case 2:{
+                ProcesarDireccion();
+                break;
+            }
+            case 0:{
+                JOptionPane.showMessageDialog(null, "El programa ha concluido satisfactoriamente","Control de navegación", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }//Fin del Switch
+        
+    }//Fin del While
+    
+    
+    }//Fin del main
+
+    //Registra la Direccion Web
+    public static void RegistrarDireccion() {
+        
+        String NombrePagina = JOptionPane.showInputDialog(null,"Digite el nombre de la página");
+       
+        PilaPaginas.insertar(NombrePagina);
+        
+    }//FinRegistrar Direccion
+
+    //Procesar la Direccion Web
+    public static void ProcesarDireccion() {
+        
+        if (PilaPaginas.estavacia() ){
+            JOptionPane.showMessageDialog(null, "No hay páginas para procesar","Control de navegación", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            NodoPagina = PilaPaginas.Sacar();
+            JOptionPane.showMessageDialog(null, "Se ha procesado la página:\n " + NodoPagina.NombrePagina,"Control de navegación", JOptionPane.INFORMATION_MESSAGE);
+        }
+            
+    
+    }//FinProcesar Direccion
+    
+    
+    
+}
